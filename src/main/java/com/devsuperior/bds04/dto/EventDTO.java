@@ -3,15 +3,25 @@ package com.devsuperior.bds04.dto;
 import java.io.Serializable;
 import java.time.LocalDate;
 
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Past;
+
 import com.devsuperior.bds04.entities.Event;
 
 public class EventDTO implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
 	private Long id;
+	
+	@NotBlank(message = "Campo Requerido")
 	private String name;
+	
+	@Past(message = "Não pode ser uma data no passado")
 	private LocalDate date;
 	private String url;
+	
+	@NotNull(message = "Cidade não pode ser nulo")
 	private Long cityId;
 	
 	public EventDTO() {
