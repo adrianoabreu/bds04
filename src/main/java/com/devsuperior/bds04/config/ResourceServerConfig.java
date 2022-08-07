@@ -23,9 +23,11 @@ public class ResourceServerConfig extends ResourceServerConfigurerAdapter{
 	@Autowired
 	private JwtTokenStore tokenStore;
 	
-	private static final String[] PUBLIC = {"/oauth/token","/h2-console/**"}; // definição da rota de acesso público, ou seja, que não precisa de login.
+	private static final String[] PUBLIC = {"/oauth/token","/h2-console/**"};
 	
-	private static final String[] CLIENT_ADMIN_POST = {"/events/**"}; // definição das rotas disponíveis para login cliente ou administrador.
+	private static final String[] CLIENT_ADMIN_GET = {"/events/**","/cities/**"};
+	
+	private static final String[] CLIENT_ADMIN_POST = {"/events/**"};
 	
 	@Override
 	public void configure(ResourceServerSecurityConfigurer resources) throws Exception {
@@ -42,8 +44,8 @@ public class ResourceServerConfig extends ResourceServerConfigurerAdapter{
 		
 		http.authorizeRequests()
 		.antMatchers(PUBLIC).permitAll()
-		.antMatchers(HttpMethod.GET, PUBLIC).permitAll()
-		.antMatchers(HttpMethod.POST, CLIENT_ADMIN_POST).hasAnyRole("CLIENT","ADMIN")
+		.antMatchers(HttpMethod.GET, CLIENT_ADMIN_GET).permitAll()
+		.antMatchers(HttpMethod.POST, CLIENT_ADMIN_POST).hasAnyRole("CLIENT", "ADMIN")
 		.anyRequest().hasAnyRole("ADMIN");
 	}
 

@@ -49,7 +49,7 @@ public class EventControllerIT {
 		adminPassword = "123456";
 	}
 
-	@Test
+	@Test   //ok
 	public void insertShouldReturn401WhenNoUserLogged() throws Exception {
 
 		EventDTO dto = new EventDTO(null, "Expo XP", LocalDate.of(2021, 5, 18), "https://expoxp.com.br", 1L);
@@ -175,7 +175,7 @@ public class EventControllerIT {
 		result.andExpect(jsonPath("$.errors[0].message").value("Campo requerido"));
 	}
 
-	@Test
+	@Test   //ok
 	public void findAllShouldReturnPagedResources() throws Exception {
 		
 		ResultActions result =

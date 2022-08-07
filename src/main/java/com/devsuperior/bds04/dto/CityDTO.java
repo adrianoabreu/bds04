@@ -11,7 +11,7 @@ public class CityDTO implements Serializable {
 	
 	private Long id;
 	
-	@NotBlank(message = "Campo Requerido")
+	@NotBlank(message = "Campo requerido")
 	private String name;
 	
 	public CityDTO() {
